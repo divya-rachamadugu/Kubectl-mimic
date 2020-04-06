@@ -1,0 +1,5 @@
+click
+kubernetes
+future
+pprint
+prettytable
