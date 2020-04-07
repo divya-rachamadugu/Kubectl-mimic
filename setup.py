@@ -29,6 +29,8 @@ setup(
         create_namespace=colors:create_namespace
         deamonset=colors:deamonset
         replicaset=colors:replicaset
+        create_daemonset=colors:create_daemonset
+        create_namespaced_pod=colors:create_namespaced_pod
         
     ''',
 )

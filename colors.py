@@ -171,3 +171,66 @@ def replicaset():
     except ApiException as e:
         print("Exception when calling AppsV1Api->list_namespaced_replica_set: %s\n" % e)
 
+def create_daemonset():
+    config.load_kube_config()
+    v12 = client.CoreV1Api()
+    job_name='test'
+    api_instance = kubernetes.client.AppsV1Api(v12.api_client)
+    namespace = 'kubectl-mimic' # str | object name and auth scope, such as for teams and projects
+    body = kubernetes.client.V1DaemonSet()# V1DaemonSet | 
+    body.metadata = kubernetes.client.V1ObjectMeta(name=job_name)
+    template = kubernetes.client.V1PodTemplate()
+    template.template = kubernetes.client.V1PodTemplateSpec()
+    container = kubernetes.client.V1Container(name="busybox")
+    container.image = "busybox"
+    container.args = ["sleep", "10"]
+    container.restart_policy = 'Never'
+    template.template.spec = kubernetes.client.V1PodSpec(restart_policy='Never', containers=[container])
+    #body.spec = kubernetes.client.V1JobSpec(template=template, backoff_limit=0)
+     
+    pretty = 'true' # str | If 'true', then the output is pretty printed. (optional)
+    # dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+    #field_manager = 'daemonset' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
+
+    try:
+        api_response = api_instance.create_namespaced_daemon_set(namespace, body, pretty=pretty)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AppsV1Api->create_namespaced_daemon_set: %s\n" % e)
+
+def create_namespace():
+    config.load_kube_config()
+    v13 = client.CoreV1Api()
+    job_name='test'
+    api_instance = kubernetes.client.CoreV1Api(v13.api_client)
+    body = kubernetes.client.V1Namespace() # V1Namespace | 
+    body.metadata = kubernetes.client.V1ObjectMeta(name=job_name)
+    
+    pretty = 'pretty_example'
+    try:
+        api_response = api_instance.create_namespace(body,pretty=pretty)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling CoreV1Api->create_namespace: %s\n" % e)
+
+def create_namespaced_pod():
+    
+    config.load_kube_config()
+    v14 = client.CoreV1Api() 
+
+    api_instance = kubernetes.client.CoreV1Api(v14.api_client)
+    namespace = 'test' # str | object name and auth scope, such as for teams and projects
+    job_name='test'
+    body = kubernetes.client.V1Pod() # V1Pod | 
+    body.metadata = kubernetes.client.V1ObjectMeta(name=job_name)
+    container = kubernetes.client.V1Container(name="busybox")
+    container.image = "busybox"
+    container.args = ["sleep", "10"]
+    body.spec = client.V1PodSpec(containers=[container])
+   
+    try:
+        api_response = api_instance.create_namespaced_pod(namespace, body)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling CoreV1Api->create_namespaced_pod: %s\n" % e)
+
