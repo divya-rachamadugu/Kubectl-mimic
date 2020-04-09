@@ -36,7 +36,7 @@ def list_nodes():
     ret = v2.list_node()
     for i in ret.items:
         print(i.metadata.name)
-       # print("%s\t%s" % (i.metadata.name,i.status.type))
+     
 
 
 def list_configmaps():
@@ -309,12 +309,7 @@ def delete_namespace():
     config.load_kube_config()
     v20 = client.CoreV1Api()
     api_instance = kubernetes.client.CoreV1Api(v20.api_client)
-    name = 'test2' # str | name of the Namespace
-    #pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-    #dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
-    #grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
-    #orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
-    #propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
+    name = 'test2'
     body = kubernetes.client.V1DeleteOptions() # V1DeleteOptions |  (optional)
 
     try:

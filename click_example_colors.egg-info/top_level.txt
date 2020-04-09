@@ -1,2 +1,11 @@
 colors
-colorssss
+configmap
+daemonset
+deployment
+get_api_groups
+namespace
+node
+pod
+replicaset
+secret
+service

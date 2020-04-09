@@ -1,5 +1,15 @@
 README.md
 colors.py
+configmap.py
+daemonset.py
+deployment.py
+get_api_groups.py
+namespace.py
+node.py
+pod.py
+replicaset.py
+secret.py
+service.py
 setup.py
 click_example_colors.egg-info/PKG-INFO
 click_example_colors.egg-info/SOURCES.txt
